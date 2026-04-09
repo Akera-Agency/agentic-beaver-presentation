@@ -817,6 +817,264 @@
             font-size: 1.5rem;
         }
 
+        /* Demo Cards */
+        .demo-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .demo-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(255, 68, 68, 0.15);
+        }
+
+        .demo-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .demo-label {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .demo-hint {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            transition: color 0.2s;
+        }
+
+        .demo-card:hover .demo-hint {
+            color: var(--accent);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        .modal-content.wide {
+            max-width: 1100px;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .modal-close:hover {
+            color: var(--text-primary);
+            background: var(--bg-tertiary);
+        }
+
+        .modal-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Workflow Diagram */
+        .workflow-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .workflow-diagram.horizontal {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .workflow-node {
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 0.75rem 1.25rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .workflow-node.start {
+            border-color: var(--blue);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .workflow-node.end {
+            border-color: var(--green);
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .workflow-arrow {
+            color: var(--text-muted);
+            font-size: 1.25rem;
+        }
+
+        .workflow-step-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .step-number {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-content strong {
+            display: block;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .step-content span {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .modal-tools {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .tool-tag {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 0.35rem 0.75rem;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* Pipeline Stage (for horizontal diagram) */
+        .pipeline-stage {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem;
+            min-width: 140px;
+            text-align: center;
+        }
+
+        .stage-header {
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+
+        .stage-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .mini-step {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .stage-tool {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .pipeline-arrow {
+            color: var(--text-muted);
+            font-size: 1.25rem;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .slide {
@@ -836,6 +1094,18 @@
             }
 
             .integration-arrow {
+                transform: rotate(90deg);
+            }
+
+            .modal-content.wide {
+                max-width: 100%;
+            }
+
+            .workflow-diagram.horizontal {
+                flex-direction: column;
+            }
+
+            .pipeline-arrow {
                 transform: rotate(90deg);
             }
         }
@@ -1470,28 +1740,33 @@ most programs we see: 15% finish rate..."</span></pre>
         <div class="slide-content" style="text-align: center;">
             <span class="eyebrow">Live Demo</span>
             <h2>Let's see it <span class="highlight">work</span></h2>
-            <p class="subtitle">Real agent. Real pipeline. No scripts.</p>
+            <p class="subtitle">Click any workflow to see how it works. Then watch the live demo.</p>
             
-            <div class="stats-grid" style="max-width: 1000px; margin: 3rem auto;">
-                <div class="stat-card">
-                    <div class="stat-value">🔍</div>
-                    <div class="stat-label">Research a Lead</div>
+            <div class="demo-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; max-width: 1000px; margin: 3rem auto;">
+                <div class="demo-card" onclick="openModal('research')">
+                    <div class="demo-icon">🔍</div>
+                    <div class="demo-label">Research a Lead</div>
+                    <div class="demo-hint">Click to see workflow →</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-value">✍️</div>
-                    <div class="stat-label">Write Cold Email</div>
+                <div class="demo-card" onclick="openModal('email')">
+                    <div class="demo-icon">✍️</div>
+                    <div class="demo-label">Write Cold Email</div>
+                    <div class="demo-hint">Click to see workflow →</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-value">📊</div>
-                    <div class="stat-label">CRM Integration</div>
+                <div class="demo-card" onclick="openModal('crm')">
+                    <div class="demo-icon">📊</div>
+                    <div class="demo-label">CRM Integration</div>
+                    <div class="demo-hint">Click to see workflow →</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-value">🚀</div>
-                    <div class="stat-label">Full Pipeline</div>
+                <div class="demo-card" onclick="openModal('pipeline')">
+                    <div class="demo-icon">🚀</div>
+                    <div class="demo-label">Full Pipeline</div>
+                    <div class="demo-hint">Click to see workflow →</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-value">⚡</div>
-                    <div class="stat-label">Audience Choice</div>
+                <div class="demo-card" onclick="openModal('scrape')">
+                    <div class="demo-icon">🕷️</div>
+                    <div class="demo-label">Scrape Leads</div>
+                    <div class="demo-hint">Click to see workflow →</div>
                 </div>
             </div>
             
@@ -1501,6 +1776,277 @@ most programs we see: 15% finish rate..."</span></pre>
             </div>
         </div>
     </section>
+
+    <!-- Modal Overlays -->
+    <div class="modal-overlay" id="modal-research" onclick="closeModal('research')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal('research')">×</button>
+            <h3>🔍 Research a Lead</h3>
+            <p class="modal-subtitle">Deep research workflow for hyper-personalized outreach</p>
+            <div class="workflow-diagram">
+                <div class="workflow-node start">📥 Lead Input</div>
+                <div class="workflow-arrow">↓</div>
+                <div class="workflow-step-box">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <strong>Web Search (Tavily)</strong>
+                        <span>Search "{name} {company}" for background, news, interviews</span>
+                    </div>
+                </div>
+                <div class="workflow-arrow">↓</div>
+                <div class="workflow-step-box">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <strong>YouTube Scrape (Apify)</strong>
+                        <span>Pull recent videos + transcripts from their channel</span>
+                    </div>
+                </div>
+                <div class="workflow-arrow">↓</div>
+                <div class="workflow-step-box">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <strong>Content Analysis (Claude)</strong>
+                        <span>Extract values, philosophy, communication style, quotes</span>
+                    </div>
+                </div>
+                <div class="workflow-arrow">↓</div>
+                <div class="workflow-step-box">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <strong>Hook Generation</strong>
+                        <span>Create 3+ personalized opener hooks with anti-patterns</span>
+                    </div>
+                </div>
+                <div class="workflow-arrow">↓</div>
+                <div class="workflow-node end">📄 Strategic Briefing</div>
+            </div>
+            <div class="modal-tools">
+                <span class="tool-tag">Tavily API</span>
+                <span class="tool-tag">Apify</span>
+                <span class="tool-tag">Claude</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-email" onclick="closeModal('email')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal('email')">×</button>
+            <h3>✍️ Write Cold Email</h3>
+            <p class="modal-subtitle">Personalized cold copy in 75 words or less</p>
+            <div class="workflow-diagram">
+                <div class="workflow-node start">📄 Research Briefing</div>
+                <div class="workflow-arrow">↓</div>
+                <div class="workflow-step-box">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <strong>Extract Hooks</strong>
+                        <span>Pull top 3 hooks and personalization points from briefing</span>
+                    </div>
+                </div>
+                <div class="workflow-arrow">↓</div>
+                <div class="workflow-step-box">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <strong>Select Framework</strong>
+                        <span>PAS, QVC, BAB, or AIDA based on lead profile</span>
+                    </div>
+                </div>
+                <div class="workflow-arrow">↓</div>
+                <div class="workflow-step-box">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <strong>Generate Copy</strong>
+                        <span>Write email with pattern-interrupt opener, specific value prop</span>
+                    </div>
+                </div>
+                <div class="workflow-arrow">↓</div>
+                <div class="workflow-step-box">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <strong>Validate & Trim</strong>
+                        <span>Enforce 75 word max, single CTA, no fluff</span>
+                    </div>
+                </div>
+                <div class="workflow-arrow">↓</div>
+                <div class="workflow-node end">📧 Ready-to-Send Email</div>
+            </div>
+            <div class="modal-tools">
+                <span class="tool-tag">Claude</span>
+                <span class="tool-tag">Lemlist Variables</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-crm" onclick="closeModal('crm')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal('crm')">×</button>
+            <h3>📊 CRM Integration</h3>
+            <p class="modal-subtitle">Sync enriched leads to Attio with full context</p>
+            <div class="workflow-diagram">
+                <div class="workflow-node start">📋 Enriched Lead Data</div>
+                <div class="workflow-arrow">↓</div>
+                <div class="workflow-step-box">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <strong>Map Fields</strong>
+                        <span>Name, email, company, member count, LTV calculation</span>
+                    </div>
+                </div>
+                <div class="workflow-arrow">↓</div>
+                <div class="workflow-step-box">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <strong>Check Duplicates</strong>
+                        <span>Query Attio for existing records by email</span>
+                    </div>
+                </div>
+                <div class="workflow-arrow">↓</div>
+                <div class="workflow-step-box">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <strong>Create/Update Record</strong>
+                        <span>POST to Attio API with all lead attributes</span>
+                    </div>
+                </div>
+                <div class="workflow-arrow">↓</div>
+                <div class="workflow-step-box">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <strong>Add to List</strong>
+                        <span>Assign to "💰 Skool Money" list with stage: Prospecting</span>
+                    </div>
+                </div>
+                <div class="workflow-arrow">↓</div>
+                <div class="workflow-node end">✅ Lead in CRM</div>
+            </div>
+            <div class="modal-tools">
+                <span class="tool-tag">Attio API</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-pipeline" onclick="closeModal('pipeline')">
+        <div class="modal-content wide" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal('pipeline')">×</button>
+            <h3>🚀 Full Pipeline</h3>
+            <p class="modal-subtitle">End-to-end: from raw lead to sent email</p>
+            <div class="workflow-diagram horizontal">
+                <div class="pipeline-stage">
+                    <div class="stage-header">SCRAPE</div>
+                    <div class="stage-steps">
+                        <div class="mini-step">Skool scraper</div>
+                        <div class="mini-step">Extract profiles</div>
+                        <div class="mini-step">Save to CSV</div>
+                    </div>
+                    <div class="stage-tool">Python + Skool API</div>
+                </div>
+                <div class="pipeline-arrow">→</div>
+                <div class="pipeline-stage">
+                    <div class="stage-header">ENRICH</div>
+                    <div class="stage-steps">
+                        <div class="mini-step">Upload to FullEnrich</div>
+                        <div class="mini-step">Find emails (40%)</div>
+                        <div class="mini-step">Export results</div>
+                    </div>
+                    <div class="stage-tool">FullEnrich API</div>
+                </div>
+                <div class="pipeline-arrow">→</div>
+                <div class="pipeline-stage">
+                    <div class="stage-header">CRM</div>
+                    <div class="stage-steps">
+                        <div class="mini-step">Map fields</div>
+                        <div class="mini-step">Create records</div>
+                        <div class="mini-step">Assign to list</div>
+                    </div>
+                    <div class="stage-tool">Attio API</div>
+                </div>
+                <div class="pipeline-arrow">→</div>
+                <div class="pipeline-stage">
+                    <div class="stage-header">RESEARCH</div>
+                    <div class="stage-steps">
+                        <div class="mini-step">Web search</div>
+                        <div class="mini-step">YouTube scrape</div>
+                        <div class="mini-step">Generate briefing</div>
+                    </div>
+                    <div class="stage-tool">Tavily + Apify</div>
+                </div>
+                <div class="pipeline-arrow">→</div>
+                <div class="pipeline-stage">
+                    <div class="stage-header">WRITE</div>
+                    <div class="stage-steps">
+                        <div class="mini-step">Extract hooks</div>
+                        <div class="mini-step">Apply framework</div>
+                        <div class="mini-step">75 word copy</div>
+                    </div>
+                    <div class="stage-tool">Claude + Skill</div>
+                </div>
+                <div class="pipeline-arrow">→</div>
+                <div class="pipeline-stage">
+                    <div class="stage-header">SEND</div>
+                    <div class="stage-steps">
+                        <div class="mini-step">Create campaign</div>
+                        <div class="mini-step">Add sequence</div>
+                        <div class="mini-step">Launch</div>
+                    </div>
+                    <div class="stage-tool">Lemlist API</div>
+                </div>
+            </div>
+            <div class="modal-tools">
+                <span class="tool-tag">OpenClaw</span>
+                <span class="tool-tag">n8n</span>
+                <span class="tool-tag">Full Automation</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-scrape" onclick="closeModal('scrape')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal('scrape')">×</button>
+            <h3>🕷️ Scrape Leads</h3>
+            <p class="modal-subtitle">Extract community owners from Skool</p>
+            <div class="workflow-diagram">
+                <div class="workflow-node start">🎯 Target Niche (e.g. "Money")</div>
+                <div class="workflow-arrow">↓</div>
+                <div class="workflow-step-box">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <strong>Search Skool</strong>
+                        <span>Query category, paginate through results (5+ pages)</span>
+                    </div>
+                </div>
+                <div class="workflow-arrow">↓</div>
+                <div class="workflow-step-box">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <strong>Extract Profiles</strong>
+                        <span>Community name, owner name, member count, pricing</span>
+                    </div>
+                </div>
+                <div class="workflow-arrow">↓</div>
+                <div class="workflow-step-box">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <strong>Calculate LTV</strong>
+                        <span>Members × Price × Retention = Opportunity value</span>
+                    </div>
+                </div>
+                <div class="workflow-arrow">↓</div>
+                <div class="workflow-step-box">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <strong>Export CSV</strong>
+                        <span>Save structured data for enrichment pipeline</span>
+                    </div>
+                </div>
+                <div class="workflow-arrow">↓</div>
+                <div class="workflow-node end">📊 357 Leads Extracted</div>
+            </div>
+            <div class="modal-tools">
+                <span class="tool-tag">Python</span>
+                <span class="tool-tag">Skool Scraper</span>
+            </div>
+        </div>
+    </div>
 
     <!-- Slide 12: Get Started -->
     <section class="slide cta-slide" id="slide-12">
@@ -1604,6 +2150,27 @@ most programs we see: 15% finish rate..."</span></pre>
         }, { threshold: 0.5 });
 
         slides.forEach(slide => observer.observe(slide));
+
+        // Modal functions
+        function openModal(id) {
+            document.getElementById('modal-' + id).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(id) {
+            document.getElementById('modal-' + id).classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+                document.body.style.overflow = '';
+            }
+        });
 
         // Initial state
         updateSlide(0);
