@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenClaw — AI Agents in Production</title>
+    <title>OpenClaw — AI-Powered Sales Pipeline</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -21,6 +21,9 @@
             --border: #222222;
             --gradient-start: #ff4444;
             --gradient-end: #ff8866;
+            --green: #22c55e;
+            --yellow: #eab308;
+            --blue: #3b82f6;
         }
 
         * {
@@ -96,7 +99,7 @@
         }
 
         .slide-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             width: 100%;
             opacity: 0;
@@ -143,6 +146,12 @@
             margin-bottom: 0.75rem;
         }
 
+        h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
         .subtitle {
             font-size: clamp(1.125rem, 2vw, 1.5rem);
             color: var(--text-secondary);
@@ -176,6 +185,8 @@
             display: flex;
             gap: 1rem;
             margin-top: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .btn {
@@ -186,6 +197,10 @@
             cursor: pointer;
             transition: all 0.2s ease;
             border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .btn-primary {
@@ -212,7 +227,7 @@
         /* Pipeline Slide */
         .pipeline {
             display: flex;
-            gap: 1rem;
+            gap: 0.5rem;
             margin-top: 3rem;
             flex-wrap: wrap;
             justify-content: center;
@@ -222,10 +237,10 @@
             background: var(--bg-secondary);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 1.5rem;
+            padding: 1.25rem;
             flex: 1;
-            min-width: 180px;
-            max-width: 220px;
+            min-width: 140px;
+            max-width: 180px;
             text-align: center;
             position: relative;
             transition: all 0.3s ease;
@@ -239,11 +254,11 @@
         .pipeline-step::after {
             content: '→';
             position: absolute;
-            right: -1.5rem;
+            right: -1rem;
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-muted);
-            font-size: 1.5rem;
+            font-size: 1.25rem;
         }
 
         .pipeline-step:last-child::after {
@@ -251,33 +266,34 @@
         }
 
         .pipeline-icon {
-            font-size: 2rem;
-            margin-bottom: 0.75rem;
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
         }
 
         .pipeline-title {
             font-weight: 600;
+            font-size: 0.875rem;
             margin-bottom: 0.25rem;
         }
 
         .pipeline-desc {
-            font-size: 0.875rem;
+            font-size: 0.75rem;
             color: var(--text-secondary);
         }
 
         /* Stats Grid */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
         .stat-card {
             background: var(--bg-secondary);
             border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 2rem;
+            padding: 1.5rem;
             text-align: center;
             transition: all 0.3s ease;
         }
@@ -287,18 +303,18 @@
         }
 
         .stat-value {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 800;
             background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
         }
 
         .stat-label {
             color: var(--text-secondary);
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
@@ -306,16 +322,16 @@
         /* Feature Cards */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
 
         .feature-card {
             background: var(--bg-secondary);
             border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 2rem;
+            padding: 1.5rem;
             transition: all 0.3s ease;
         }
 
@@ -342,7 +358,7 @@
 
         .feature-card p {
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         /* Code Block */
@@ -350,11 +366,11 @@
             background: var(--bg-tertiary);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 1.5rem;
-            margin-top: 2rem;
+            padding: 1.25rem;
+            margin-top: 1rem;
             overflow-x: auto;
             font-family: 'JetBrains Mono', 'Fira Code', monospace;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             line-height: 1.6;
         }
 
@@ -374,8 +390,7 @@
             border: 1px solid var(--border);
             border-radius: 12px;
             overflow: hidden;
-            margin-top: 2rem;
-            max-width: 800px;
+            margin-top: 1.5rem;
         }
 
         .terminal-header {
@@ -397,9 +412,9 @@
         .terminal-dot.green { background: #27c93f; }
 
         .terminal-body {
-            padding: 1.5rem;
+            padding: 1.25rem;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             line-height: 1.8;
         }
 
@@ -414,6 +429,8 @@
         .terminal-line:nth-child(4) { animation-delay: 1.4s; }
         .terminal-line:nth-child(5) { animation-delay: 1.8s; }
         .terminal-line:nth-child(6) { animation-delay: 2.2s; }
+        .terminal-line:nth-child(7) { animation-delay: 2.6s; }
+        .terminal-line:nth-child(8) { animation-delay: 3s; }
 
         @keyframes typeLine {
             to { opacity: 1; }
@@ -432,8 +449,20 @@
         .two-col {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .three-col {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 1100px) {
+            .three-col {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 900px) {
@@ -443,117 +472,208 @@
             }
         }
 
-        /* Workflow Diagram */
-        .workflow {
-            margin-top: 2rem;
+        /* Skill Cards */
+        .skill-section {
+            margin-bottom: 2rem;
         }
 
-        .workflow-step {
-            display: flex;
-            gap: 1.5rem;
-            padding: 1.5rem 0;
-            border-bottom: 1px solid var(--border);
-            align-items: flex-start;
-        }
-
-        .workflow-step:last-child {
-            border-bottom: none;
-        }
-
-        .workflow-number {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-            border-radius: 50%;
+        .skill-section h3 {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            flex-shrink: 0;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
         }
 
-        .workflow-content h4 {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .workflow-content p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        /* Use Case Cards */
-        .usecase-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .usecase-card {
-            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+        .skill-card {
+            background: var(--bg-secondary);
             border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2rem;
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
             position: relative;
             overflow: hidden;
         }
 
-        .usecase-card::before {
+        .skill-card::before {
             content: '';
             position: absolute;
-            top: 0;
             left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            top: 0;
+            bottom: 0;
+            width: 4px;
         }
 
-        .usecase-icon {
+        .skill-card.ready::before {
+            background: var(--green);
+        }
+
+        .skill-card.partial::before {
+            background: var(--yellow);
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-name {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .skill-status {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .skill-status.ready {
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--green);
+        }
+
+        .skill-status.partial {
+            background: rgba(234, 179, 8, 0.15);
+            color: var(--yellow);
+        }
+
+        .skill-desc {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Tool Cards */
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .tool-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .tool-logo {
             font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .usecase-card h3 {
             margin-bottom: 0.75rem;
         }
 
-        .usecase-card ul {
-            list-style: none;
+        .tool-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .tool-type {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Framework Box */
+        .framework-box {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
             margin-top: 1rem;
         }
 
-        .usecase-card li {
-            padding: 0.5rem 0;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        .framework-box h4 {
+            color: var(--accent);
+            margin-bottom: 1rem;
         }
 
-        .usecase-card li::before {
-            content: '✓';
+        .framework-list {
+            list-style: none;
+        }
+
+        .framework-list li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .framework-list li::before {
+            content: '→';
             color: var(--accent);
-            font-weight: 700;
+            font-weight: bold;
+        }
+
+        /* Email Preview */
+        .email-preview {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .email-header {
+            background: var(--bg-secondary);
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .email-field {
+            display: flex;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .email-field:last-child {
+            margin-bottom: 0;
+        }
+
+        .email-label {
+            color: var(--text-muted);
+            min-width: 60px;
+        }
+
+        .email-body {
+            padding: 1.25rem;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .email-body .personalized {
+            color: var(--accent);
+            font-weight: 500;
         }
 
         /* Quote */
         .quote {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-style: italic;
             color: var(--text-secondary);
             border-left: 4px solid var(--accent);
             padding-left: 1.5rem;
             margin: 2rem 0;
-            max-width: 700px;
+            max-width: 600px;
         }
 
         .quote-author {
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-style: normal;
-            margin-top: 1rem;
+            margin-top: 0.75rem;
             color: var(--text-muted);
         }
 
@@ -601,17 +721,6 @@
         }
 
         /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         @keyframes pulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
@@ -653,6 +762,61 @@
             animation: pulse 1.5s ease-in-out infinite;
         }
 
+        /* Metric Table */
+        .metric-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            font-size: 0.875rem;
+        }
+
+        .metric-table th, .metric-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .metric-table th {
+            color: var(--text-muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+
+        .metric-table td:first-child {
+            font-weight: 500;
+        }
+
+        /* Integration Flow */
+        .integration-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .integration-node {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .integration-node.highlight {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, var(--bg-secondary), rgba(255, 68, 68, 0.1));
+        }
+
+        .integration-arrow {
+            color: var(--text-muted);
+            font-size: 1.5rem;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .slide {
@@ -670,6 +834,10 @@
             .nav-hint {
                 display: none;
             }
+
+            .integration-arrow {
+                transform: rotate(90deg);
+            }
         }
     </style>
 </head>
@@ -682,7 +850,7 @@
             <span>OpenClaw</span>
         </div>
         <div class="slide-counter">
-            <span id="currentSlide">01</span> / <span id="totalSlides">09</span>
+            <span id="currentSlide">01</span> / <span id="totalSlides">12</span>
         </div>
     </nav>
 
@@ -694,11 +862,11 @@
                 <span class="live-dot"></span>
                 Live Demo Session
             </div>
-            <h1>AI Agents<br>in Production</h1>
-            <p class="subtitle">OpenClaw turns AI from a chatbot into a teammate. Real workflows. Real automation. Real results.</p>
+            <h1>AI-Powered<br>Sales Pipeline</h1>
+            <p class="subtitle">From lead scraping to personalized outreach — fully automated with OpenClaw agents.</p>
             <div class="hero-cta">
-                <button class="btn btn-primary" onclick="nextSlide()">See Use Cases →</button>
-                <button class="btn btn-secondary" onclick="goToSlide(8)">Live Demo</button>
+                <button class="btn btn-primary" onclick="nextSlide()">See the Stack →</button>
+                <button class="btn btn-secondary" onclick="goToSlide(11)">Live Demo</button>
             </div>
         </div>
     </section>
@@ -707,71 +875,132 @@
     <section class="slide" id="slide-2">
         <div class="slide-content">
             <span class="eyebrow">The Problem</span>
-            <h2>ChatGPT is a calculator.<br>You need a <span class="highlight">coworker</span>.</h2>
-            <p class="subtitle">AI chatbots answer questions. But business needs someone who can:</p>
+            <h2>Manual outreach is<br><span class="highlight">broken</span></h2>
+            <p class="subtitle">SDRs spend 80% of their time on tasks AI can do better.</p>
             
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">📅</div>
-                    <h3>Schedule & Remember</h3>
-                    <p>Set reminders, check calendars, follow up automatically without being asked.</p>
+                    <div class="feature-icon">🔍</div>
+                    <h3>Lead Research</h3>
+                    <p>Hours spent on LinkedIn, YouTube, podcasts — gathering context that gets forgotten.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🔧</div>
-                    <h3>Use Your Tools</h3>
-                    <p>Connect to CRMs, email, Slack, GitHub — actually do work, not just talk about it.</p>
+                    <div class="feature-icon">📧</div>
+                    <h3>Finding Emails</h3>
+                    <p>Bouncing between Hunter, Apollo, LinkedIn — still missing 60% of contacts.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
-                    <h3>Run Workflows</h3>
-                    <p>Execute multi-step processes: research → enrich → write → send → follow up.</p>
+                    <div class="feature-icon">✍️</div>
+                    <h3>Writing Copy</h3>
+                    <p>"Hey {firstName}" templates that everyone ignores. No real personalization.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🧠</div>
-                    <h3>Learn & Adapt</h3>
-                    <p>Remember context, preferences, and history across sessions. Actually know you.</p>
+                    <div class="feature-icon">📊</div>
+                    <h3>Managing Data</h3>
+                    <p>Copy-paste between spreadsheets, CRMs, email tools. Context lost everywhere.</p>
+                </div>
+            </div>
+
+            <div class="quote" style="margin-top: 3rem;">
+                "The average SDR sends 50 emails/day. Only 2 get replies."
+                <div class="quote-author">— Industry average: 1-3% reply rate</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 3: The Solution Overview -->
+    <section class="slide" id="slide-3">
+        <div class="slide-content">
+            <span class="eyebrow">The Solution</span>
+            <h2>End-to-end <span class="highlight">automation</span></h2>
+            <p class="subtitle">OpenClaw orchestrates the entire pipeline — from scraping to sending.</p>
+            
+            <div class="pipeline">
+                <div class="pipeline-step">
+                    <div class="pipeline-icon">🔍</div>
+                    <div class="pipeline-title">SCRAPE</div>
+                    <div class="pipeline-desc">Skool, LinkedIn</div>
+                </div>
+                <div class="pipeline-step">
+                    <div class="pipeline-icon">📧</div>
+                    <div class="pipeline-title">ENRICH</div>
+                    <div class="pipeline-desc">Find emails</div>
+                </div>
+                <div class="pipeline-step">
+                    <div class="pipeline-icon">💾</div>
+                    <div class="pipeline-title">CRM</div>
+                    <div class="pipeline-desc">Add to Attio</div>
+                </div>
+                <div class="pipeline-step">
+                    <div class="pipeline-icon">🔬</div>
+                    <div class="pipeline-title">RESEARCH</div>
+                    <div class="pipeline-desc">Deep dive</div>
+                </div>
+                <div class="pipeline-step">
+                    <div class="pipeline-icon">✍️</div>
+                    <div class="pipeline-title">WRITE</div>
+                    <div class="pipeline-desc">Personalize</div>
+                </div>
+                <div class="pipeline-step">
+                    <div class="pipeline-icon">🚀</div>
+                    <div class="pipeline-title">SEND</div>
+                    <div class="pipeline-desc">Launch</div>
+                </div>
+            </div>
+
+            <div class="stats-grid" style="margin-top: 3rem;">
+                <div class="stat-card">
+                    <div class="stat-value">357</div>
+                    <div class="stat-label">Leads Scraped</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">40%</div>
+                    <div class="stat-label">Email Hit Rate</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">5min</div>
+                    <div class="stat-label">Per Lead Research</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">133</div>
+                    <div class="stat-label">Leads in CRM</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Slide 3: What is OpenClaw -->
-    <section class="slide" id="slide-3">
+    <!-- Slide 4: Lead Generation Skills -->
+    <section class="slide" id="slide-4">
         <div class="slide-content">
-            <span class="eyebrow">The Solution</span>
-            <h2>OpenClaw: Your AI<br><span class="highlight">operating system</span></h2>
-            <p class="subtitle">A self-hosted platform that gives Claude (or any LLM) a body — tools, memory, and agency to get work done.</p>
+            <span class="eyebrow">Phase 1</span>
+            <h2>Lead <span class="highlight">Generation</span></h2>
+            <p class="subtitle">Skills that find and qualify your targets.</p>
             
             <div class="two-col">
                 <div>
-                    <div class="workflow">
-                        <div class="workflow-step">
-                            <div class="workflow-number">1</div>
-                            <div class="workflow-content">
-                                <h4>Connect Your Channels</h4>
-                                <p>Discord, Slack, Telegram, WhatsApp, SMS — talk to your agent wherever you are.</p>
+                    <div class="skill-section">
+                        <div class="skill-card ready">
+                            <div class="skill-header">
+                                <span class="skill-name">🔍 scrape-skill</span>
+                                <span class="skill-status ready">✅ Ready</span>
                             </div>
+                            <div class="skill-desc">Skool scraper working. Pulled 357 leads from Money category. Extracts community name, member count, owner info, pricing.</div>
                         </div>
-                        <div class="workflow-step">
-                            <div class="workflow-number">2</div>
-                            <div class="workflow-content">
-                                <h4>Give It Skills</h4>
-                                <p>Plug in capabilities: web search, browser control, email, calendar, code execution.</p>
+
+                        <div class="skill-card ready">
+                            <div class="skill-header">
+                                <span class="skill-name">📧 enrich</span>
+                                <span class="skill-status ready">✅ Ready</span>
                             </div>
+                            <div class="skill-desc">FullEnrich integration. 39.8% hit rate. 349.5 credits remaining. Falls back to Lemlist bulk enrich API.</div>
                         </div>
-                        <div class="workflow-step">
-                            <div class="workflow-number">3</div>
-                            <div class="workflow-content">
-                                <h4>Build Custom Workflows</h4>
-                                <p>Create SKILL.md files that teach your agent exactly how you work.</p>
+
+                        <div class="skill-card ready">
+                            <div class="skill-header">
+                                <span class="skill-name">💾 add-to-crm</span>
+                                <span class="skill-status ready">✅ Ready</span>
                             </div>
-                        </div>
-                        <div class="workflow-step">
-                            <div class="workflow-number">4</div>
-                            <div class="workflow-content">
-                                <h4>Let It Run</h4>
-                                <p>Your agent works 24/7 — checking tasks, processing requests, following up.</p>
-                            </div>
+                            <div class="skill-desc">Attio API configured. 133 leads imported to "💰 Skool Money" list. Syncs member count, LTV, stage.</div>
                         </div>
                     </div>
                 </div>
@@ -783,103 +1012,223 @@
                             <span class="terminal-dot green"></span>
                         </div>
                         <div class="terminal-body">
-                            <div class="terminal-line"><span class="terminal-prompt">you@discord:</span> research Alex Hormozi and write a cold email</div>
-                            <div class="terminal-line terminal-output">🔍 Searching web for Alex Hormozi...</div>
-                            <div class="terminal-line terminal-output">📺 Pulling recent YouTube content...</div>
-                            <div class="terminal-line terminal-output">📄 Generating Strategic Account Briefing...</div>
-                            <div class="terminal-line terminal-output">✍️ Writing personalized outreach copy...</div>
-                            <div class="terminal-line"><span class="terminal-prompt">clawdius:</span> Done! Draft ready for review 📬</div>
+                            <div class="terminal-line"><span class="terminal-prompt">$</span> scrape skool "money" --pages 5</div>
+                            <div class="terminal-line terminal-output">🔍 Scraping Skool communities...</div>
+                            <div class="terminal-line terminal-output">📊 Found 357 communities</div>
+                            <div class="terminal-line terminal-output">💾 Saved to leads.csv</div>
+                            <div class="terminal-line"><span class="terminal-prompt">$</span> enrich leads.csv --fullenrich</div>
+                            <div class="terminal-line terminal-output">📧 Enriching 357 leads...</div>
+                            <div class="terminal-line terminal-output">✅ Found 142 emails (39.8%)</div>
+                            <div class="terminal-line"><span class="terminal-prompt">$</span> attio import enriched.csv</div>
+                            <div class="terminal-line terminal-output">✅ 133 leads added to Attio</div>
                         </div>
+                    </div>
+
+                    <table class="metric-table" style="margin-top: 1.5rem;">
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Total Scraped</td>
+                                <td>357 leads</td>
+                            </tr>
+                            <tr>
+                                <td>Emails Found</td>
+                                <td>142 (39.8%)</td>
+                            </tr>
+                            <tr>
+                                <td>FullEnrich Credits</td>
+                                <td>349.5 remaining</td>
+                            </tr>
+                            <tr>
+                                <td>CRM Imported</td>
+                                <td>133 leads</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 5: Outreach Skills -->
+    <section class="slide" id="slide-5">
+        <div class="slide-content">
+            <span class="eyebrow">Phase 2</span>
+            <h2>Personalized <span class="highlight">Outreach</span></h2>
+            <p class="subtitle">Skills that research, write, and send.</p>
+            
+            <div class="two-col">
+                <div>
+                    <div class="skill-section">
+                        <div class="skill-card partial">
+                            <div class="skill-header">
+                                <span class="skill-name">🔬 research</span>
+                                <span class="skill-status partial">🔶 Partial</span>
+                            </div>
+                            <div class="skill-desc">SKILL.md done. Deep research via Tavily + YouTube scraping. Needs integration testing with n8n webhook for batch processing.</div>
+                        </div>
+
+                        <div class="skill-card ready">
+                            <div class="skill-header">
+                                <span class="skill-name">✍️ cold-email</span>
+                                <span class="skill-status ready">✅ Ready</span>
+                            </div>
+                            <div class="skill-desc">Copy frameworks from Lemlist & Instantly. 50-75 word templates. A/B structure built-in. Pattern-interrupt openers.</div>
+                        </div>
+
+                        <div class="skill-card partial">
+                            <div class="skill-header">
+                                <span class="skill-name">🚀 send (Lemlist)</span>
+                                <span class="skill-status partial">🔶 Partial</span>
+                            </div>
+                            <div class="skill-desc">API docs integrated. Campaign creation, lead upload, sequence steps. Needs live campaign test.</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="color: var(--text-muted); margin-bottom: 0.5rem;">Research → Write Flow</h4>
+                    <div class="integration-flow" style="margin: 1rem 0; justify-content: flex-start;">
+                        <div class="integration-node">Lead</div>
+                        <span class="integration-arrow">→</span>
+                        <div class="integration-node highlight">Research Skill</div>
+                        <span class="integration-arrow">→</span>
+                        <div class="integration-node">Briefing</div>
+                        <span class="integration-arrow">→</span>
+                        <div class="integration-node highlight">Cold Email Skill</div>
+                        <span class="integration-arrow">→</span>
+                        <div class="integration-node">Copy</div>
+                    </div>
+
+                    <div class="framework-box">
+                        <h4>Cold Email Frameworks</h4>
+                        <ul class="framework-list">
+                            <li><strong>PAS</strong> — Problem → Agitate → Solution</li>
+                            <li><strong>QVC</strong> — Question → Value → CTA</li>
+                            <li><strong>BAB</strong> — Before → After → Bridge</li>
+                            <li><strong>AIDA</strong> — Attention → Interest → Desire → Action</li>
+                        </ul>
+                    </div>
+
+                    <div style="margin-top: 1rem; padding: 1rem; background: var(--bg-secondary); border-radius: 8px; font-size: 0.85rem;">
+                        <strong style="color: var(--accent);">Rule:</strong> 75 words max. Every word earns its place.
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Slide 4: Sales Pipeline Use Case -->
-    <section class="slide" id="slide-4">
+    <!-- Slide 6: The Tool Stack -->
+    <section class="slide" id="slide-6">
         <div class="slide-content">
-            <span class="eyebrow">Use Case #1</span>
-            <h2>Automated <span class="highlight">Sales Pipeline</span></h2>
-            <p class="subtitle">End-to-end cold outreach: from lead scraping to personalized emails — fully automated.</p>
+            <span class="eyebrow">The Stack</span>
+            <h2>Tools that <span class="highlight">power</span> the pipeline</h2>
+            <p class="subtitle">APIs and integrations orchestrated by OpenClaw.</p>
             
-            <div class="pipeline">
-                <div class="pipeline-step">
-                    <div class="pipeline-icon">🔍</div>
-                    <div class="pipeline-title">SCRAPE</div>
-                    <div class="pipeline-desc">Pull leads from Skool, LinkedIn, Twitter</div>
+            <div class="tool-grid">
+                <div class="tool-card">
+                    <div class="tool-logo">🎯</div>
+                    <div class="tool-name">Attio</div>
+                    <div class="tool-type">CRM</div>
                 </div>
-                <div class="pipeline-step">
-                    <div class="pipeline-icon">📧</div>
-                    <div class="pipeline-title">ENRICH</div>
-                    <div class="pipeline-desc">Find emails via FullEnrich / Lemlist</div>
+                <div class="tool-card">
+                    <div class="tool-logo">📧</div>
+                    <div class="tool-name">Lemlist</div>
+                    <div class="tool-type">Email Sequences</div>
                 </div>
-                <div class="pipeline-step">
-                    <div class="pipeline-icon">🔬</div>
-                    <div class="pipeline-title">RESEARCH</div>
-                    <div class="pipeline-desc">Deep-dive: YouTube, podcasts, content</div>
+                <div class="tool-card">
+                    <div class="tool-logo">🔍</div>
+                    <div class="tool-name">FullEnrich</div>
+                    <div class="tool-type">Email Finding</div>
                 </div>
-                <div class="pipeline-step">
-                    <div class="pipeline-icon">✍️</div>
-                    <div class="pipeline-title">WRITE</div>
-                    <div class="pipeline-desc">Hyper-personalized cold copy</div>
+                <div class="tool-card">
+                    <div class="tool-logo">🧱</div>
+                    <div class="tool-name">Clay</div>
+                    <div class="tool-type">Data Enrichment</div>
                 </div>
-                <div class="pipeline-step">
-                    <div class="pipeline-icon">🚀</div>
-                    <div class="pipeline-title">SEND</div>
-                    <div class="pipeline-desc">Launch via Lemlist / n8n</div>
+                <div class="tool-card">
+                    <div class="tool-logo">🌐</div>
+                    <div class="tool-name">Tavily</div>
+                    <div class="tool-type">Web Research</div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-logo">⚡</div>
+                    <div class="tool-name">n8n</div>
+                    <div class="tool-type">Workflow Automation</div>
                 </div>
             </div>
 
-            <div class="stats-grid" style="margin-top: 4rem;">
-                <div class="stat-card">
-                    <div class="stat-value">357</div>
-                    <div class="stat-label">Leads Scraped</div>
+            <div class="two-col" style="margin-top: 3rem;">
+                <div>
+                    <h3>Data Flow</h3>
+                    <div class="code-block">
+                        <pre><span class="code-comment"># Lead Gen</span>
+<span class="code-function">Skool</span> → scrape → <span class="code-variable">leads.csv</span>
+<span class="code-variable">leads.csv</span> → <span class="code-function">FullEnrich</span> → emails
+emails → <span class="code-function">Attio</span> → CRM
+
+<span class="code-comment"># Outreach</span>
+lead → <span class="code-function">Tavily</span> + <span class="code-function">YouTube</span> → briefing
+briefing → <span class="code-function">cold-email</span> → copy
+copy → <span class="code-function">Lemlist</span> → send</pre>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-value">142</div>
-                    <div class="stat-label">Emails Found (40%)</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">~5min</div>
-                    <div class="stat-label">Per Lead Research</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">75</div>
-                    <div class="stat-label">Words Max (Cold Email)</div>
+                <div>
+                    <h3>n8n Workflows</h3>
+                    <div class="skill-card ready" style="margin-top: 1rem;">
+                        <div class="skill-header">
+                            <span class="skill-name">Cold Outreach Stuff</span>
+                        </div>
+                        <div class="skill-desc">Main workflow: form trigger → process leads → emails → report</div>
+                    </div>
+                    <div class="skill-card ready">
+                        <div class="skill-header">
+                            <span class="skill-name">Scrape His Socials</span>
+                        </div>
+                        <div class="skill-desc">Sub-workflow: Apify YouTube scraping for transcripts</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Slide 5: Research Skill Deep Dive -->
-    <section class="slide" id="slide-5">
+    <!-- Slide 7: Research Skill Deep Dive -->
+    <section class="slide" id="slide-7">
         <div class="slide-content">
-            <span class="eyebrow">Deep Dive: Research Skill</span>
-            <h2>From stranger to <span class="highlight">personalized pitch</span></h2>
-            <p class="subtitle">The research skill replaces manual Gemini/ChatGPT sessions. It produces strategic briefings with actual hooks.</p>
+            <span class="eyebrow">Deep Dive</span>
+            <h2>The <span class="highlight">Research</span> Skill</h2>
+            <p class="subtitle">Replaces manual Gemini sessions. Produces strategic briefings with actionable hooks.</p>
             
             <div class="two-col">
                 <div>
-                    <h3 style="margin-bottom: 1rem;">Input</h3>
-                    <div class="code-block">
+                    <h4 style="color: var(--text-muted); margin-bottom: 1rem;">Input</h4>
+                    <div class="code-block" style="margin-top: 0;">
                         <pre><span class="code-keyword">lead_name:</span> <span class="code-string">"Alex Hormozi"</span>
 <span class="code-keyword">company:</span> <span class="code-string">"Acquisition.com"</span>
 <span class="code-keyword">youtube_url:</span> <span class="code-string">"@AlexHormozi"</span>
 <span class="code-keyword">context:</span> <span class="code-string">"AI retention for course creators"</span></pre>
                     </div>
                     
-                    <h3 style="margin: 2rem 0 1rem;">Process</h3>
-                    <ul style="list-style: none;">
-                        <li style="padding: 0.5rem 0; color: var(--text-secondary);">✓ Web search: background, news, interviews</li>
-                        <li style="padding: 0.5rem 0; color: var(--text-secondary);">✓ YouTube scrape: recent videos + transcripts</li>
-                        <li style="padding: 0.5rem 0; color: var(--text-secondary);">✓ Content analysis: values, philosophy, style</li>
-                        <li style="padding: 0.5rem 0; color: var(--text-secondary);">✓ Hook generation: 3+ actionable openers</li>
+                    <h4 style="color: var(--text-muted); margin: 1.5rem 0 0.5rem;">Process</h4>
+                    <ul style="list-style: none; font-size: 0.9rem;">
+                        <li style="padding: 0.4rem 0; color: var(--text-secondary);">✓ <strong>Tavily search:</strong> background, news, interviews</li>
+                        <li style="padding: 0.4rem 0; color: var(--text-secondary);">✓ <strong>YouTube scrape:</strong> recent videos + transcripts (Apify)</li>
+                        <li style="padding: 0.4rem 0; color: var(--text-secondary);">✓ <strong>Content analysis:</strong> values, philosophy, communication style</li>
+                        <li style="padding: 0.4rem 0; color: var(--text-secondary);">✓ <strong>Hook generation:</strong> 3+ actionable openers</li>
                     </ul>
+
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: var(--bg-secondary); border-radius: 8px; border-left: 3px solid var(--accent);">
+                        <strong style="font-size: 0.85rem;">API: Tavily</strong>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.25rem;">search_depth: "advanced" | include_answer: true</p>
+                    </div>
                 </div>
                 <div>
-                    <h3 style="margin-bottom: 1rem;">Output: Strategic Briefing</h3>
-                    <div class="code-block" style="font-size: 0.8rem;">
+                    <h4 style="color: var(--text-muted); margin-bottom: 1rem;">Output: Strategic Briefing</h4>
+                    <div class="code-block" style="font-size: 0.75rem; margin-top: 0;">
                         <pre><span class="code-comment"># Alex Hormozi — Account Briefing</span>
 
 <span class="code-keyword">## Philosophy</span>
@@ -896,149 +1245,234 @@ Anti-guru, proof-focused, aggressive transparency
 - "Just wanted to reach out"
 - Generic AI buzzwords
 
+<span class="code-keyword">## Quote to Use</span>
+<span class="code-string">"Most people need to hear you're not 
+working hard enough"</span>
+
 <span class="code-keyword">## Suggested Opener</span>
-<span class="code-string">"Watched your breakdown on retention curves.
-Most programs we see: 15% finish rate.
-We built something that changes that..."</span></pre>
+<span class="code-string">"Your breakdown on retention curves — 
+most programs we see: 15% finish rate..."</span></pre>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Slide 6: More Use Cases -->
-    <section class="slide" id="slide-6">
+    <!-- Slide 8: Cold Email Skill Deep Dive -->
+    <section class="slide" id="slide-8">
         <div class="slide-content">
-            <span class="eyebrow">Beyond Sales</span>
-            <h2>Use cases are <span class="highlight">limitless</span></h2>
-            <p class="subtitle">OpenClaw agents handle anything you'd ask a competent assistant to do.</p>
-            
-            <div class="usecase-grid">
-                <div class="usecase-card">
-                    <div class="usecase-icon">🏠</div>
-                    <h3>Smart Home Control</h3>
-                    <p>Voice/text commands to control lights, thermostats, cameras, doors.</p>
-                    <ul>
-                        <li>Home Assistant integration</li>
-                        <li>Security camera monitoring</li>
-                        <li>Routine automation</li>
-                    </ul>
-                </div>
-                <div class="usecase-card">
-                    <div class="usecase-icon">💻</div>
-                    <h3>DevOps & Engineering</h3>
-                    <p>Code reviews, deployments, monitoring, incident response.</p>
-                    <ul>
-                        <li>GitHub/GitLab workflows</li>
-                        <li>Server health checks</li>
-                        <li>Automated debugging</li>
-                    </ul>
-                </div>
-                <div class="usecase-card">
-                    <div class="usecase-icon">📊</div>
-                    <h3>Business Intelligence</h3>
-                    <p>Pull reports, analyze data, summarize metrics on demand.</p>
-                    <ul>
-                        <li>CRM data pulls (Attio, HubSpot)</li>
-                        <li>Financial summaries</li>
-                        <li>Competitive analysis</li>
-                    </ul>
-                </div>
-                <div class="usecase-card">
-                    <div class="usecase-icon">📝</div>
-                    <h3>Personal Assistant</h3>
-                    <p>Calendar management, reminders, travel booking, research.</p>
-                    <ul>
-                        <li>Email triage & drafting</li>
-                        <li>Meeting prep & notes</li>
-                        <li>Flight/hotel searches</li>
-                    </ul>
-                </div>
-                <div class="usecase-card">
-                    <div class="usecase-icon">🤖</div>
-                    <h3>Workflow Orchestration</h3>
-                    <p>Connect n8n, Zapier, Make — trigger and chain automations.</p>
-                    <ul>
-                        <li>n8n workflow management</li>
-                        <li>Webhook triggers</li>
-                        <li>Cross-platform automation</li>
-                    </ul>
-                </div>
-                <div class="usecase-card">
-                    <div class="usecase-icon">🌐</div>
-                    <h3>Web Automation</h3>
-                    <p>Browser control for tasks that don't have APIs.</p>
-                    <ul>
-                        <li>Form filling & submissions</li>
-                        <li>Screenshot & monitoring</li>
-                        <li>Data extraction</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Slide 7: Architecture -->
-    <section class="slide" id="slide-7">
-        <div class="slide-content">
-            <span class="eyebrow">Under the Hood</span>
-            <h2>How it <span class="highlight">works</span></h2>
-            <p class="subtitle">Self-hosted. Open source. Your data stays yours.</p>
+            <span class="eyebrow">Deep Dive</span>
+            <h2>The <span class="highlight">Cold Email</span> Skill</h2>
+            <p class="subtitle">Inspired by Lemlist & Instantly. Short, punchy, personalized.</p>
             
             <div class="two-col">
                 <div>
-                    <div class="feature-card" style="margin-bottom: 1.5rem;">
-                        <div class="feature-icon">🧠</div>
-                        <h3>LLM Core</h3>
-                        <p>Claude, GPT-4, Gemini, or any provider. Switch models per-task. Use Opus for complex reasoning, Haiku for quick ops.</p>
+                    <h4 style="color: var(--text-muted); margin-bottom: 1rem;">Core Rules</h4>
+                    <div class="framework-box" style="margin-top: 0;">
+                        <ul class="framework-list">
+                            <li><strong>75 words max</strong> — Every word earns its place</li>
+                            <li><strong>No generic openers</strong> — Skip "Hey, reaching out..."</li>
+                            <li><strong>Specific > vague</strong> — "267k members = ~$80K" beats "$50K-$300K"</li>
+                            <li><strong>One clear CTA</strong> — "Want me to show you?"</li>
+                            <li><strong>Pattern interrupt</strong> — First line stops the scroll</li>
+                        </ul>
                     </div>
-                    <div class="feature-card" style="margin-bottom: 1.5rem;">
-                        <div class="feature-icon">🔌</div>
-                        <h3>Plugin System</h3>
-                        <p>Skills are just markdown files. Drop a SKILL.md and your agent learns new capabilities instantly.</p>
+
+                    <h4 style="color: var(--text-muted); margin: 1.5rem 0 0.5rem;">5-Email Sequence</h4>
+                    <table class="metric-table" style="margin-top: 0;">
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>Day</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>0</td><td>Hook + Problem</td></tr>
+                            <tr><td>2</td><td>3</td><td>Value + Proof</td></tr>
+                            <tr><td>3</td><td>7</td><td>Social Proof</td></tr>
+                            <tr><td>4</td><td>10</td><td>Risk/FOMO</td></tr>
+                            <tr><td>5</td><td>14</td><td>Hail Mary</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <h4 style="color: var(--text-muted); margin-bottom: 1rem;">Example Output</h4>
+                    <div class="email-preview">
+                        <div class="email-header">
+                            <div class="email-field">
+                                <span class="email-label">To:</span>
+                                <span>alex@acquisition.com</span>
+                            </div>
+                            <div class="email-field">
+                                <span class="email-label">Subject:</span>
+                                <span><span class="personalized">Alex</span> — quick question about <span class="personalized">Gym Launch</span></span>
+                            </div>
+                        </div>
+                        <div class="email-body">
+                            <span class="personalized">Alex</span> — watched your breakdown on retention curves.<br><br>
+                            
+                            Most programs we see: <strong>15% finish rate</strong>. The rest ghost after week 2.<br><br>
+                            
+                            With <span class="personalized">267k members</span>, that's roughly <strong>$80K</strong> sitting on the table.<br><br>
+                            
+                            We built something that changes that. No fluff — just AI that keeps people engaged 24/7.<br><br>
+                            
+                            Worth a 10-min call to see if it fits?
+                        </div>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">💾</div>
-                        <h3>Persistent Memory</h3>
-                        <p>MEMORY.md + daily logs. Your agent remembers context, preferences, and decisions across sessions.</p>
+                    <div style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted); text-align: right;">
+                        Word count: 67 ✓
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 9: Lemlist Integration -->
+    <section class="slide" id="slide-9">
+        <div class="slide-content">
+            <span class="eyebrow">Integration</span>
+            <h2><span class="highlight">Lemlist</span> API</h2>
+            <p class="subtitle">Campaign creation, lead upload, sequence automation.</p>
+            
+            <div class="two-col">
+                <div>
+                    <h4 style="color: var(--text-muted); margin-bottom: 1rem;">Key Endpoints</h4>
+                    <div class="code-block" style="margin-top: 0; font-size: 0.8rem;">
+                        <pre><span class="code-comment"># Base: https://api.lemlist.com/api</span>
+<span class="code-comment"># Auth: Basic (empty user, API key as pass)</span>
+
+<span class="code-keyword">GET</span>  /campaigns          <span class="code-comment"># List all</span>
+<span class="code-keyword">POST</span> /campaigns          <span class="code-comment"># Create new</span>
+<span class="code-keyword">POST</span> /campaigns/{id}/leads   <span class="code-comment"># Add lead</span>
+<span class="code-keyword">POST</span> /campaigns/{id}/start   <span class="code-comment"># Launch</span>
+<span class="code-keyword">POST</span> /enrich             <span class="code-comment"># Find email</span>
+<span class="code-keyword">POST</span> /enrich/bulk        <span class="code-comment"># Batch (500 max)</span></pre>
+                    </div>
+
+                    <h4 style="color: var(--text-muted); margin: 1.5rem 0 0.5rem;">Variables Available</h4>
+                    <div class="code-block" style="margin-top: 0; font-size: 0.8rem;">
+                        <pre><span class="code-comment"># Standard</span>
+{{firstName}} {{lastName}} {{email}}
+{{companyName}} {{phone}} {{linkedinUrl}}
+
+<span class="code-comment"># Custom (from lead data)</span>
+{{communityName}} {{memberCount}}
+{{calculatedLTV}} {{completionRate}}</pre>
                     </div>
                 </div>
                 <div>
-                    <div class="code-block">
-                        <pre><span class="code-comment"># Typical OpenClaw Setup</span>
+                    <h4 style="color: var(--text-muted); margin-bottom: 1rem;">Campaign Creation Flow</h4>
+                    <div class="terminal" style="margin-top: 0;">
+                        <div class="terminal-header">
+                            <span class="terminal-dot red"></span>
+                            <span class="terminal-dot yellow"></span>
+                            <span class="terminal-dot green"></span>
+                        </div>
+                        <div class="terminal-body" style="font-size: 0.75rem;">
+                            <div class="terminal-line"><span class="terminal-prompt">1.</span> Create campaign</div>
+                            <div class="terminal-line terminal-output">POST /campaigns {"name": "Skool AI Q2"}</div>
+                            <div class="terminal-line"><span class="terminal-prompt">2.</span> Add email sequence</div>
+                            <div class="terminal-line terminal-output">POST /campaigns/{id}/sequences</div>
+                            <div class="terminal-line"><span class="terminal-prompt">3.</span> Upload leads</div>
+                            <div class="terminal-line terminal-output">POST /campaigns/{id}/leads (batch)</div>
+                            <div class="terminal-line"><span class="terminal-prompt">4.</span> Start campaign</div>
+                            <div class="terminal-line terminal-output">POST /campaigns/{id}/start ✅</div>
+                        </div>
+                    </div>
 
-<span class="code-keyword">workspace/</span>
+                    <div style="margin-top: 1rem; padding: 1rem; background: var(--bg-secondary); border-radius: 8px; font-size: 0.85rem;">
+                        <strong style="color: var(--yellow);">⚠️ Rate Limit:</strong> 10 requests/second per team
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 10: Full Architecture -->
+    <section class="slide" id="slide-10">
+        <div class="slide-content">
+            <span class="eyebrow">Architecture</span>
+            <h2>How it all <span class="highlight">connects</span></h2>
+            <p class="subtitle">OpenClaw orchestrates skills, tools, and workflows.</p>
+            
+            <div class="integration-flow" style="margin: 2rem 0;">
+                <div class="integration-node">Skool</div>
+                <span class="integration-arrow">→</span>
+                <div class="integration-node highlight">OpenClaw</div>
+                <span class="integration-arrow">→</span>
+                <div class="integration-node">FullEnrich</div>
+                <span class="integration-arrow">→</span>
+                <div class="integration-node">Attio</div>
+                <span class="integration-arrow">→</span>
+                <div class="integration-node highlight">OpenClaw</div>
+                <span class="integration-arrow">→</span>
+                <div class="integration-node">Lemlist</div>
+            </div>
+
+            <div class="two-col">
+                <div>
+                    <h4 style="color: var(--text-muted); margin-bottom: 1rem;">Workspace Structure</h4>
+                    <div class="code-block" style="margin-top: 0; font-size: 0.8rem;">
+                        <pre><span class="code-keyword">workspace/</span>
 ├── <span class="code-variable">AGENTS.md</span>      <span class="code-comment"># Agent instructions</span>
-├── <span class="code-variable">SOUL.md</span>        <span class="code-comment"># Personality & tone</span>
-├── <span class="code-variable">USER.md</span>        <span class="code-comment"># Your preferences</span>
-├── <span class="code-variable">MEMORY.md</span>      <span class="code-comment"># Long-term memory</span>
-├── <span class="code-variable">TOOLS.md</span>       <span class="code-comment"># Local tool configs</span>
+├── <span class="code-variable">MEMORY.md</span>      <span class="code-comment"># Pipeline state</span>
 │
 ├── <span class="code-keyword">skills/</span>
 │   ├── <span class="code-function">cold-email/</span>
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── references/
+│   │       ├── frameworks.md
+│   │       └── examples.md
 │   ├── <span class="code-function">research/</span>
 │   │   └── SKILL.md
 │   └── <span class="code-function">outbound-sales/</span>
 │       └── SKILL.md
 │
+├── <span class="code-keyword">configs/</span>
+│   ├── .attio-config.json
+│   ├── .lemlist-config.json
+│   ├── .fullenrich-config.json
+│   └── .tavily-config.json
+│
 └── <span class="code-keyword">memory/</span>
-    ├── 2026-04-09.md
-    └── 2026-04-08.md</pre>
+    └── lead-gen-workflow-session.md</pre>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="color: var(--text-muted); margin-bottom: 1rem;">Key Benefits</h4>
+                    <div class="features-grid" style="grid-template-columns: 1fr; margin-top: 0; gap: 1rem;">
+                        <div class="feature-card" style="padding: 1rem;">
+                            <h4 style="margin-bottom: 0.25rem;">🧠 Persistent Memory</h4>
+                            <p style="font-size: 0.85rem;">Agent remembers campaign state, lead status, what's been sent.</p>
+                        </div>
+                        <div class="feature-card" style="padding: 1rem;">
+                            <h4 style="margin-bottom: 0.25rem;">🔌 Hot-Swappable Skills</h4>
+                            <p style="font-size: 0.85rem;">Drop a SKILL.md, agent learns new capabilities instantly.</p>
+                        </div>
+                        <div class="feature-card" style="padding: 1rem;">
+                            <h4 style="margin-bottom: 0.25rem;">⚡ Model Routing</h4>
+                            <p style="font-size: 0.85rem;">Opus for research, Sonnet for writing, Haiku for simple ops.</p>
+                        </div>
+                        <div class="feature-card" style="padding: 1rem;">
+                            <h4 style="margin-bottom: 0.25rem;">📱 Multi-Channel</h4>
+                            <p style="font-size: 0.85rem;">Command via Discord, Slack, Telegram — wherever you are.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Slide 8: Live Demo -->
-    <section class="slide" id="slide-8">
+    <!-- Slide 11: Live Demo -->
+    <section class="slide" id="slide-11">
         <div class="slide-content" style="text-align: center;">
             <span class="eyebrow">Live Demo</span>
-            <h2>Let's see it <span class="highlight">in action</span></h2>
-            <p class="subtitle">Real agent. Real tasks. No scripts.</p>
+            <h2>Let's see it <span class="highlight">work</span></h2>
+            <p class="subtitle">Real agent. Real pipeline. No scripts.</p>
             
-            <div class="stats-grid" style="max-width: 900px; margin: 3rem auto;">
+            <div class="stats-grid" style="max-width: 1000px; margin: 3rem auto;">
                 <div class="stat-card">
                     <div class="stat-value">🔍</div>
                     <div class="stat-label">Research a Lead</div>
@@ -1048,8 +1482,12 @@ We built something that changes that..."</span></pre>
                     <div class="stat-label">Write Cold Email</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">🌐</div>
-                    <div class="stat-label">Web Automation</div>
+                    <div class="stat-value">📊</div>
+                    <div class="stat-label">CRM Integration</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">🚀</div>
+                    <div class="stat-label">Full Pipeline</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-value">⚡</div>
@@ -1057,19 +1495,19 @@ We built something that changes that..."</span></pre>
                 </div>
             </div>
             
-            <div class="quote">
+            <div class="quote" style="margin: 2rem auto;">
                 "The best demo is showing you can break it. Ask me anything."
                 <div class="quote-author">— Amine, OpenClaw</div>
             </div>
         </div>
     </section>
 
-    <!-- Slide 9: Get Started -->
-    <section class="slide cta-slide" id="slide-9">
+    <!-- Slide 12: Get Started -->
+    <section class="slide cta-slide" id="slide-12">
         <div class="glow" style="bottom: 20%; right: 10%;"></div>
         <div class="slide-content">
             <span class="eyebrow">Ready?</span>
-            <h2>Build your own<br><span class="highlight">AI teammate</span></h2>
+            <h2>Build your own<br><span class="highlight">sales agent</span></h2>
             <p class="subtitle">Open source. Self-hosted. Deploy in minutes.</p>
             
             <div class="terminal" style="max-width: 500px; margin: 2rem auto;">
@@ -1088,7 +1526,7 @@ We built something that changes that..."</span></pre>
             <div class="hero-cta" style="margin-top: 3rem;">
                 <a href="https://github.com/openclaw/openclaw" target="_blank" class="btn btn-primary">GitHub →</a>
                 <a href="https://docs.openclaw.ai" target="_blank" class="btn btn-secondary">Documentation</a>
-                <a href="https://discord.com/invite/clawd" target="_blank" class="btn btn-secondary">Discord Community</a>
+                <a href="https://discord.com/invite/clawd" target="_blank" class="btn btn-secondary">Discord</a>
             </div>
         </div>
     </section>
@@ -1103,7 +1541,6 @@ We built something that changes that..."</span></pre>
         const slides = document.querySelectorAll('.slide');
         const totalSlides = slides.length;
         let currentSlide = 0;
-        let isScrolling = false;
 
         document.getElementById('totalSlides').textContent = String(totalSlides).padStart(2, '0');
 
@@ -1150,6 +1587,8 @@ We built something that changes that..."</span></pre>
                 if (slideNum <= totalSlides) {
                     goToSlide(slideNum);
                 }
+            } else if (e.key === '0') {
+                goToSlide(10);
             }
         });
 
