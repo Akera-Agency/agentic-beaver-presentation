@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agentic Beaver — AI Agents in Production</title>
+    <title>OpenClaw — AI Agents in Production</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,15 +12,15 @@
             --bg-primary: #0a0a0a;
             --bg-secondary: #111111;
             --bg-tertiary: #1a1a1a;
-            --accent: #f97316;
-            --accent-secondary: #fb923c;
-            --accent-glow: rgba(249, 115, 22, 0.3);
+            --accent: #ff4444;
+            --accent-secondary: #ff6b6b;
+            --accent-glow: rgba(255, 68, 68, 0.3);
             --text-primary: #ffffff;
             --text-secondary: #888888;
             --text-muted: #555555;
             --border: #222222;
-            --gradient-start: #f97316;
-            --gradient-end: #fbbf24;
+            --gradient-start: #ff4444;
+            --gradient-end: #ff8866;
             --green: #22c55e;
             --yellow: #eab308;
             --blue: #3b82f6;
@@ -70,16 +70,14 @@
         }
 
         .logo-icon {
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
             border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .logo-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
         }
 
         .slide-counter {
@@ -1118,8 +1116,8 @@
 
     <nav class="nav">
         <div class="logo">
-            <div class="logo-icon"><img src="beaver-logo.png" alt="Agentic Beaver"></div>
-            <span>Agentic Beaver</span>
+            <div class="logo-icon">🦞</div>
+            <span>OpenClaw</span>
         </div>
         <div class="slide-counter">
             <span id="currentSlide">01</span> / <span id="totalSlides">12</span>
@@ -1134,7 +1132,7 @@
                 <span class="live-dot"></span>
                 Live Demo Session
             </div>
-            <img src="beaver-logo.png" alt="Agentic Beaver" style="width: 120px; height: 120px; border-radius: 24px; margin-bottom: 1.5rem;">
+            
             <h1>AI Agents<br>in Production</h1>
             <p class="subtitle">From chatbot to coworker. Real workflows, real automation, real results.</p>
             <div class="hero-cta">
@@ -1180,7 +1178,7 @@
     <section class="slide" id="slide-3">
         <div class="slide-content">
             <span class="eyebrow">The Solution</span>
-            <h2>Agentic Beaver: Your AI<br><span class="highlight">operating system</span></h2>
+            <h2>OpenClaw: Your AI<br><span class="highlight">operating system</span></h2>
             <p class="subtitle">A platform that gives Claude (or any LLM) a body — tools, memory, and agency.</p>
             
             <div class="pipeline">
@@ -1395,7 +1393,7 @@
         <div class="slide-content">
             <span class="eyebrow">The Stack</span>
             <h2>Tools that <span class="highlight">power</span> the pipeline</h2>
-            <p class="subtitle">APIs and integrations orchestrated by Agentic Beaver.</p>
+            <p class="subtitle">APIs and integrations orchestrated by OpenClaw.</p>
             
             <div class="tool-grid">
                 <div class="tool-card">
@@ -1663,18 +1661,18 @@ most programs we see: 15% finish rate..."</span></pre>
         <div class="slide-content">
             <span class="eyebrow">Architecture</span>
             <h2>How it all <span class="highlight">connects</span></h2>
-            <p class="subtitle">Agentic Beaver orchestrates skills, tools, and workflows.</p>
+            <p class="subtitle">OpenClaw orchestrates skills, tools, and workflows.</p>
             
             <div class="integration-flow" style="margin: 2rem 0;">
                 <div class="integration-node">Skool</div>
                 <span class="integration-arrow">→</span>
-                <div class="integration-node highlight">Agentic Beaver</div>
+                <div class="integration-node highlight">OpenClaw</div>
                 <span class="integration-arrow">→</span>
                 <div class="integration-node">FullEnrich</div>
                 <span class="integration-arrow">→</span>
                 <div class="integration-node">Attio</div>
                 <span class="integration-arrow">→</span>
-                <div class="integration-node highlight">Agentic Beaver</div>
+                <div class="integration-node highlight">OpenClaw</div>
                 <span class="integration-arrow">→</span>
                 <div class="integration-node">Lemlist</div>
             </div>
@@ -1987,7 +1985,7 @@ most programs we see: 15% finish rate..."</span></pre>
                 </div>
             </div>
             <div class="modal-tools">
-                <span class="tool-tag">Agentic Beaver</span>
+                <span class="tool-tag">OpenClaw</span>
                 <span class="tool-tag">n8n</span>
                 <span class="tool-tag">Full Automation</span>
             </div>
@@ -2047,7 +2045,7 @@ most programs we see: 15% finish rate..."</span></pre>
     <section class="slide cta-slide" id="slide-12">
         <div class="glow" style="bottom: 20%; right: 10%;"></div>
         <div class="slide-content">
-            <img src="beaver-logo.png" alt="Agentic Beaver" style="width: 100px; height: 100px; border-radius: 20px; margin-bottom: 1.5rem;">
+            
             <span class="eyebrow">Ready?</span>
             <h2>Build your own<br><span class="highlight">AI teammate</span></h2>
             <p class="subtitle">Open source. Self-hosted. Deploy in minutes.</p>
@@ -2059,16 +2057,16 @@ most programs we see: 15% finish rate..."</span></pre>
                     <span class="terminal-dot green"></span>
                 </div>
                 <div class="terminal-body" style="text-align: left;">
-                    <div class="terminal-line"><span class="terminal-prompt">$</span> npm install -g agentic-beaver</div>
-                    <div class="terminal-line"><span class="terminal-prompt">$</span> beaver init</div>
-                    <div class="terminal-line"><span class="terminal-prompt">$</span> beaver start</div>
+                    <div class="terminal-line"><span class="terminal-prompt">$</span> npm install -g openclaw</div>
+                    <div class="terminal-line"><span class="terminal-prompt">$</span> openclaw init</div>
+                    <div class="terminal-line"><span class="terminal-prompt">$</span> openclaw start</div>
                 </div>
             </div>
             
             <div class="hero-cta" style="margin-top: 3rem;">
-                <a href="#" class="btn btn-primary">Get Started →</a>
-                <a href="#" class="btn btn-secondary">Documentation</a>
-                <a href="#" class="btn btn-secondary">Join Discord</a>
+                <a href="https://github.com/openclaw/openclaw" target="_blank" class="btn btn-primary">GitHub →</a>
+                <a href="https://docs.openclaw.ai" target="_blank" class="btn btn-secondary">Documentation</a>
+                <a href="https://discord.com/invite/clawd" target="_blank" class="btn btn-secondary">Join Discord</a>
             </div>
         </div>
     </section>
