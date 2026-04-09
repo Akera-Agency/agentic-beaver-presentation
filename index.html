@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw — AI Agents in Production</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-tertiary: #1a1a1a;
+            --accent: #ff4444;
+            --accent-secondary: #ff6b6b;
+            --accent-glow: rgba(255, 68, 68, 0.3);
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --text-muted: #555555;
+            --border: #222222;
+            --gradient-start: #ff4444;
+            --gradient-end: #ff8866;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .slide-counter {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Slides */
+        .slide {
+            min-height: 100vh;
+            padding: 6rem 4rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            scroll-snap-align: start;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .slide.active .slide-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Typography */
+        .eyebrow {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .subtitle {
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin-bottom: 2rem;
+        }
+
+        .highlight {
+            color: var(--accent);
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            align-items: center;
+        }
+
+        .hero .slide-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero h1 {
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 50%, var(--text-primary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.875rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-secondary);
+            border-color: var(--text-muted);
+        }
+
+        /* Pipeline Slide */
+        .pipeline {
+            display: flex;
+            gap: 1rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .pipeline-step {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            flex: 1;
+            min-width: 180px;
+            max-width: 220px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pipeline-step:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .pipeline-step::after {
+            content: '→';
+            position: absolute;
+            right: -1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 1.5rem;
+        }
+
+        .pipeline-step:last-child::after {
+            display: none;
+        }
+
+        .pipeline-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .pipeline-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .pipeline-desc {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent);
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Feature Cards */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .code-block pre {
+            margin: 0;
+        }
+
+        .code-comment { color: var(--text-muted); }
+        .code-keyword { color: #ff79c6; }
+        .code-string { color: #f1fa8c; }
+        .code-function { color: #8be9fd; }
+        .code-variable { color: #50fa7b; }
+
+        /* Demo Terminal */
+        .terminal {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 2rem;
+            max-width: 800px;
+        }
+
+        .terminal-header {
+            background: var(--bg-secondary);
+            padding: 0.75rem 1rem;
+            display: flex;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-dot.red { background: #ff5f56; }
+        .terminal-dot.yellow { background: #ffbd2e; }
+        .terminal-dot.green { background: #27c93f; }
+
+        .terminal-body {
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            line-height: 1.8;
+        }
+
+        .terminal-line {
+            opacity: 0;
+            animation: typeLine 0.5s ease forwards;
+        }
+
+        .terminal-line:nth-child(1) { animation-delay: 0.2s; }
+        .terminal-line:nth-child(2) { animation-delay: 0.6s; }
+        .terminal-line:nth-child(3) { animation-delay: 1s; }
+        .terminal-line:nth-child(4) { animation-delay: 1.4s; }
+        .terminal-line:nth-child(5) { animation-delay: 1.8s; }
+        .terminal-line:nth-child(6) { animation-delay: 2.2s; }
+
+        @keyframes typeLine {
+            to { opacity: 1; }
+        }
+
+        .terminal-prompt {
+            color: var(--accent);
+        }
+
+        .terminal-output {
+            color: var(--text-secondary);
+            padding-left: 1rem;
+        }
+
+        /* Two Column */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .two-col {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* Workflow Diagram */
+        .workflow {
+            margin-top: 2rem;
+        }
+
+        .workflow-step {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border);
+            align-items: flex-start;
+        }
+
+        .workflow-step:last-child {
+            border-bottom: none;
+        }
+
+        .workflow-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .workflow-content h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .workflow-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Use Case Cards */
+        .usecase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .usecase-card {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .usecase-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+        }
+
+        .usecase-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .usecase-card h3 {
+            margin-bottom: 0.75rem;
+        }
+
+        .usecase-card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .usecase-card li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .usecase-card li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Quote */
+        .quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            border-left: 4px solid var(--accent);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            max-width: 700px;
+        }
+
+        .quote-author {
+            font-size: 1rem;
+            font-style: normal;
+            margin-top: 1rem;
+            color: var(--text-muted);
+        }
+
+        /* CTA Section */
+        .cta-slide {
+            text-align: center;
+            align-items: center;
+        }
+
+        .cta-slide .slide-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Keyboard Navigation Hint */
+        .nav-hint {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .key {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 0.25rem 0.5rem;
+            font-family: monospace;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            z-index: 1001;
+            transition: width 0.3s ease;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Glow effect */
+        .glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Live Demo Tag */
+        .live-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--accent);
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 5rem 1.5rem 2rem;
+            }
+            
+            .nav {
+                padding: 1rem;
+            }
+
+            .pipeline-step::after {
+                display: none;
+            }
+
+            .nav-hint {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progress"></div>
+
+    <nav class="nav">
+        <div class="logo">
+            <div class="logo-icon">🦞</div>
+            <span>OpenClaw</span>
+        </div>
+        <div class="slide-counter">
+            <span id="currentSlide">01</span> / <span id="totalSlides">09</span>
+        </div>
+    </nav>
+
+    <!-- Slide 1: Hero -->
+    <section class="slide hero active" id="slide-1">
+        <div class="glow" style="top: 20%; left: 10%;"></div>
+        <div class="slide-content">
+            <div class="live-tag">
+                <span class="live-dot"></span>
+                Live Demo Session
+            </div>
+            <h1>AI Agents<br>in Production</h1>
+            <p class="subtitle">OpenClaw turns AI from a chatbot into a teammate. Real workflows. Real automation. Real results.</p>
+            <div class="hero-cta">
+                <button class="btn btn-primary" onclick="nextSlide()">See Use Cases →</button>
+                <button class="btn btn-secondary" onclick="goToSlide(8)">Live Demo</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 2: The Problem -->
+    <section class="slide" id="slide-2">
+        <div class="slide-content">
+            <span class="eyebrow">The Problem</span>
+            <h2>ChatGPT is a calculator.<br>You need a <span class="highlight">coworker</span>.</h2>
+            <p class="subtitle">AI chatbots answer questions. But business needs someone who can:</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <h3>Schedule & Remember</h3>
+                    <p>Set reminders, check calendars, follow up automatically without being asked.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Use Your Tools</h3>
+                    <p>Connect to CRMs, email, Slack, GitHub — actually do work, not just talk about it.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Run Workflows</h3>
+                    <p>Execute multi-step processes: research → enrich → write → send → follow up.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Learn & Adapt</h3>
+                    <p>Remember context, preferences, and history across sessions. Actually know you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 3: What is OpenClaw -->
+    <section class="slide" id="slide-3">
+        <div class="slide-content">
+            <span class="eyebrow">The Solution</span>
+            <h2>OpenClaw: Your AI<br><span class="highlight">operating system</span></h2>
+            <p class="subtitle">A self-hosted platform that gives Claude (or any LLM) a body — tools, memory, and agency to get work done.</p>
+            
+            <div class="two-col">
+                <div>
+                    <div class="workflow">
+                        <div class="workflow-step">
+                            <div class="workflow-number">1</div>
+                            <div class="workflow-content">
+                                <h4>Connect Your Channels</h4>
+                                <p>Discord, Slack, Telegram, WhatsApp, SMS — talk to your agent wherever you are.</p>
+                            </div>
+                        </div>
+                        <div class="workflow-step">
+                            <div class="workflow-number">2</div>
+                            <div class="workflow-content">
+                                <h4>Give It Skills</h4>
+                                <p>Plug in capabilities: web search, browser control, email, calendar, code execution.</p>
+                            </div>
+                        </div>
+                        <div class="workflow-step">
+                            <div class="workflow-number">3</div>
+                            <div class="workflow-content">
+                                <h4>Build Custom Workflows</h4>
+                                <p>Create SKILL.md files that teach your agent exactly how you work.</p>
+                            </div>
+                        </div>
+                        <div class="workflow-step">
+                            <div class="workflow-number">4</div>
+                            <div class="workflow-content">
+                                <h4>Let It Run</h4>
+                                <p>Your agent works 24/7 — checking tasks, processing requests, following up.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="terminal">
+                        <div class="terminal-header">
+                            <span class="terminal-dot red"></span>
+                            <span class="terminal-dot yellow"></span>
+                            <span class="terminal-dot green"></span>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="terminal-line"><span class="terminal-prompt">you@discord:</span> research Alex Hormozi and write a cold email</div>
+                            <div class="terminal-line terminal-output">🔍 Searching web for Alex Hormozi...</div>
+                            <div class="terminal-line terminal-output">📺 Pulling recent YouTube content...</div>
+                            <div class="terminal-line terminal-output">📄 Generating Strategic Account Briefing...</div>
+                            <div class="terminal-line terminal-output">✍️ Writing personalized outreach copy...</div>
+                            <div class="terminal-line"><span class="terminal-prompt">clawdius:</span> Done! Draft ready for review 📬</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 4: Sales Pipeline Use Case -->
+    <section class="slide" id="slide-4">
+        <div class="slide-content">
+            <span class="eyebrow">Use Case #1</span>
+            <h2>Automated <span class="highlight">Sales Pipeline</span></h2>
+            <p class="subtitle">End-to-end cold outreach: from lead scraping to personalized emails — fully automated.</p>
+            
+            <div class="pipeline">
+                <div class="pipeline-step">
+                    <div class="pipeline-icon">🔍</div>
+                    <div class="pipeline-title">SCRAPE</div>
+                    <div class="pipeline-desc">Pull leads from Skool, LinkedIn, Twitter</div>
+                </div>
+                <div class="pipeline-step">
+                    <div class="pipeline-icon">📧</div>
+                    <div class="pipeline-title">ENRICH</div>
+                    <div class="pipeline-desc">Find emails via FullEnrich / Lemlist</div>
+                </div>
+                <div class="pipeline-step">
+                    <div class="pipeline-icon">🔬</div>
+                    <div class="pipeline-title">RESEARCH</div>
+                    <div class="pipeline-desc">Deep-dive: YouTube, podcasts, content</div>
+                </div>
+                <div class="pipeline-step">
+                    <div class="pipeline-icon">✍️</div>
+                    <div class="pipeline-title">WRITE</div>
+                    <div class="pipeline-desc">Hyper-personalized cold copy</div>
+                </div>
+                <div class="pipeline-step">
+                    <div class="pipeline-icon">🚀</div>
+                    <div class="pipeline-title">SEND</div>
+                    <div class="pipeline-desc">Launch via Lemlist / n8n</div>
+                </div>
+            </div>
+
+            <div class="stats-grid" style="margin-top: 4rem;">
+                <div class="stat-card">
+                    <div class="stat-value">357</div>
+                    <div class="stat-label">Leads Scraped</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">142</div>
+                    <div class="stat-label">Emails Found (40%)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">~5min</div>
+                    <div class="stat-label">Per Lead Research</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">75</div>
+                    <div class="stat-label">Words Max (Cold Email)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 5: Research Skill Deep Dive -->
+    <section class="slide" id="slide-5">
+        <div class="slide-content">
+            <span class="eyebrow">Deep Dive: Research Skill</span>
+            <h2>From stranger to <span class="highlight">personalized pitch</span></h2>
+            <p class="subtitle">The research skill replaces manual Gemini/ChatGPT sessions. It produces strategic briefings with actual hooks.</p>
+            
+            <div class="two-col">
+                <div>
+                    <h3 style="margin-bottom: 1rem;">Input</h3>
+                    <div class="code-block">
+                        <pre><span class="code-keyword">lead_name:</span> <span class="code-string">"Alex Hormozi"</span>
+<span class="code-keyword">company:</span> <span class="code-string">"Acquisition.com"</span>
+<span class="code-keyword">youtube_url:</span> <span class="code-string">"@AlexHormozi"</span>
+<span class="code-keyword">context:</span> <span class="code-string">"AI retention for course creators"</span></pre>
+                    </div>
+                    
+                    <h3 style="margin: 2rem 0 1rem;">Process</h3>
+                    <ul style="list-style: none;">
+                        <li style="padding: 0.5rem 0; color: var(--text-secondary);">✓ Web search: background, news, interviews</li>
+                        <li style="padding: 0.5rem 0; color: var(--text-secondary);">✓ YouTube scrape: recent videos + transcripts</li>
+                        <li style="padding: 0.5rem 0; color: var(--text-secondary);">✓ Content analysis: values, philosophy, style</li>
+                        <li style="padding: 0.5rem 0; color: var(--text-secondary);">✓ Hook generation: 3+ actionable openers</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 1rem;">Output: Strategic Briefing</h3>
+                    <div class="code-block" style="font-size: 0.8rem;">
+                        <pre><span class="code-comment"># Alex Hormozi — Account Briefing</span>
+
+<span class="code-keyword">## Philosophy</span>
+"Give away the secrets, sell the implementation"
+Anti-guru, proof-focused, aggressive transparency
+
+<span class="code-keyword">## Top Hooks</span>
+1. Reference <span class="code-string">"$100M Offers"</span> framework
+2. Lead with numbers (he respects data)
+3. Connect to <span class="code-string">"volume negates luck"</span>
+
+<span class="code-keyword">## Don't Say</span>
+- Fluffy language, vague promises
+- "Just wanted to reach out"
+- Generic AI buzzwords
+
+<span class="code-keyword">## Suggested Opener</span>
+<span class="code-string">"Watched your breakdown on retention curves.
+Most programs we see: 15% finish rate.
+We built something that changes that..."</span></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 6: More Use Cases -->
+    <section class="slide" id="slide-6">
+        <div class="slide-content">
+            <span class="eyebrow">Beyond Sales</span>
+            <h2>Use cases are <span class="highlight">limitless</span></h2>
+            <p class="subtitle">OpenClaw agents handle anything you'd ask a competent assistant to do.</p>
+            
+            <div class="usecase-grid">
+                <div class="usecase-card">
+                    <div class="usecase-icon">🏠</div>
+                    <h3>Smart Home Control</h3>
+                    <p>Voice/text commands to control lights, thermostats, cameras, doors.</p>
+                    <ul>
+                        <li>Home Assistant integration</li>
+                        <li>Security camera monitoring</li>
+                        <li>Routine automation</li>
+                    </ul>
+                </div>
+                <div class="usecase-card">
+                    <div class="usecase-icon">💻</div>
+                    <h3>DevOps & Engineering</h3>
+                    <p>Code reviews, deployments, monitoring, incident response.</p>
+                    <ul>
+                        <li>GitHub/GitLab workflows</li>
+                        <li>Server health checks</li>
+                        <li>Automated debugging</li>
+                    </ul>
+                </div>
+                <div class="usecase-card">
+                    <div class="usecase-icon">📊</div>
+                    <h3>Business Intelligence</h3>
+                    <p>Pull reports, analyze data, summarize metrics on demand.</p>
+                    <ul>
+                        <li>CRM data pulls (Attio, HubSpot)</li>
+                        <li>Financial summaries</li>
+                        <li>Competitive analysis</li>
+                    </ul>
+                </div>
+                <div class="usecase-card">
+                    <div class="usecase-icon">📝</div>
+                    <h3>Personal Assistant</h3>
+                    <p>Calendar management, reminders, travel booking, research.</p>
+                    <ul>
+                        <li>Email triage & drafting</li>
+                        <li>Meeting prep & notes</li>
+                        <li>Flight/hotel searches</li>
+                    </ul>
+                </div>
+                <div class="usecase-card">
+                    <div class="usecase-icon">🤖</div>
+                    <h3>Workflow Orchestration</h3>
+                    <p>Connect n8n, Zapier, Make — trigger and chain automations.</p>
+                    <ul>
+                        <li>n8n workflow management</li>
+                        <li>Webhook triggers</li>
+                        <li>Cross-platform automation</li>
+                    </ul>
+                </div>
+                <div class="usecase-card">
+                    <div class="usecase-icon">🌐</div>
+                    <h3>Web Automation</h3>
+                    <p>Browser control for tasks that don't have APIs.</p>
+                    <ul>
+                        <li>Form filling & submissions</li>
+                        <li>Screenshot & monitoring</li>
+                        <li>Data extraction</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 7: Architecture -->
+    <section class="slide" id="slide-7">
+        <div class="slide-content">
+            <span class="eyebrow">Under the Hood</span>
+            <h2>How it <span class="highlight">works</span></h2>
+            <p class="subtitle">Self-hosted. Open source. Your data stays yours.</p>
+            
+            <div class="two-col">
+                <div>
+                    <div class="feature-card" style="margin-bottom: 1.5rem;">
+                        <div class="feature-icon">🧠</div>
+                        <h3>LLM Core</h3>
+                        <p>Claude, GPT-4, Gemini, or any provider. Switch models per-task. Use Opus for complex reasoning, Haiku for quick ops.</p>
+                    </div>
+                    <div class="feature-card" style="margin-bottom: 1.5rem;">
+                        <div class="feature-icon">🔌</div>
+                        <h3>Plugin System</h3>
+                        <p>Skills are just markdown files. Drop a SKILL.md and your agent learns new capabilities instantly.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💾</div>
+                        <h3>Persistent Memory</h3>
+                        <p>MEMORY.md + daily logs. Your agent remembers context, preferences, and decisions across sessions.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="code-block">
+                        <pre><span class="code-comment"># Typical OpenClaw Setup</span>
+
+<span class="code-keyword">workspace/</span>
+├── <span class="code-variable">AGENTS.md</span>      <span class="code-comment"># Agent instructions</span>
+├── <span class="code-variable">SOUL.md</span>        <span class="code-comment"># Personality & tone</span>
+├── <span class="code-variable">USER.md</span>        <span class="code-comment"># Your preferences</span>
+├── <span class="code-variable">MEMORY.md</span>      <span class="code-comment"># Long-term memory</span>
+├── <span class="code-variable">TOOLS.md</span>       <span class="code-comment"># Local tool configs</span>
+│
+├── <span class="code-keyword">skills/</span>
+│   ├── <span class="code-function">cold-email/</span>
+│   │   └── SKILL.md
+│   ├── <span class="code-function">research/</span>
+│   │   └── SKILL.md
+│   └── <span class="code-function">outbound-sales/</span>
+│       └── SKILL.md
+│
+└── <span class="code-keyword">memory/</span>
+    ├── 2026-04-09.md
+    └── 2026-04-08.md</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 8: Live Demo -->
+    <section class="slide" id="slide-8">
+        <div class="slide-content" style="text-align: center;">
+            <span class="eyebrow">Live Demo</span>
+            <h2>Let's see it <span class="highlight">in action</span></h2>
+            <p class="subtitle">Real agent. Real tasks. No scripts.</p>
+            
+            <div class="stats-grid" style="max-width: 900px; margin: 3rem auto;">
+                <div class="stat-card">
+                    <div class="stat-value">🔍</div>
+                    <div class="stat-label">Research a Lead</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">✍️</div>
+                    <div class="stat-label">Write Cold Email</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">🌐</div>
+                    <div class="stat-label">Web Automation</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">⚡</div>
+                    <div class="stat-label">Audience Choice</div>
+                </div>
+            </div>
+            
+            <div class="quote">
+                "The best demo is showing you can break it. Ask me anything."
+                <div class="quote-author">— Amine, OpenClaw</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 9: Get Started -->
+    <section class="slide cta-slide" id="slide-9">
+        <div class="glow" style="bottom: 20%; right: 10%;"></div>
+        <div class="slide-content">
+            <span class="eyebrow">Ready?</span>
+            <h2>Build your own<br><span class="highlight">AI teammate</span></h2>
+            <p class="subtitle">Open source. Self-hosted. Deploy in minutes.</p>
+            
+            <div class="terminal" style="max-width: 500px; margin: 2rem auto;">
+                <div class="terminal-header">
+                    <span class="terminal-dot red"></span>
+                    <span class="terminal-dot yellow"></span>
+                    <span class="terminal-dot green"></span>
+                </div>
+                <div class="terminal-body" style="text-align: left;">
+                    <div class="terminal-line"><span class="terminal-prompt">$</span> npm install -g openclaw</div>
+                    <div class="terminal-line"><span class="terminal-prompt">$</span> openclaw init</div>
+                    <div class="terminal-line"><span class="terminal-prompt">$</span> openclaw start</div>
+                </div>
+            </div>
+            
+            <div class="hero-cta" style="margin-top: 3rem;">
+                <a href="https://github.com/openclaw/openclaw" target="_blank" class="btn btn-primary">GitHub →</a>
+                <a href="https://docs.openclaw.ai" target="_blank" class="btn btn-secondary">Documentation</a>
+                <a href="https://discord.com/invite/clawd" target="_blank" class="btn btn-secondary">Discord Community</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="nav-hint">
+        <span class="key">↑</span>
+        <span class="key">↓</span>
+        or scroll
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let currentSlide = 0;
+        let isScrolling = false;
+
+        document.getElementById('totalSlides').textContent = String(totalSlides).padStart(2, '0');
+
+        function updateSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            document.getElementById('currentSlide').textContent = String(index + 1).padStart(2, '0');
+            document.getElementById('progress').style.width = `${((index + 1) / totalSlides) * 100}%`;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+                updateSlide(currentSlide);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+                updateSlide(currentSlide);
+            }
+        }
+
+        function goToSlide(index) {
+            currentSlide = index - 1;
+            slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+            updateSlide(currentSlide);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevSlide();
+            } else if (e.key >= '1' && e.key <= '9') {
+                const slideNum = parseInt(e.key);
+                if (slideNum <= totalSlides) {
+                    goToSlide(slideNum);
+                }
+            }
+        });
+
+        // Scroll detection
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const index = Array.from(slides).indexOf(entry.target);
+                    currentSlide = index;
+                    updateSlide(currentSlide);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        slides.forEach(slide => observer.observe(slide));
+
+        // Initial state
+        updateSlide(0);
+    </script>
+</body>
+</html>
